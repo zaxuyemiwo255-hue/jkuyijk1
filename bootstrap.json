@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "updatedAt": "2026-06-07T07:45:57.885Z",
+  "apiPool": [
+    "https://gxwcf.shop/api",
+    "https://mbtkd.shop/api",
+    "https://vjyln.shop/api",
+    "https://xkrwb.shop/api",
+    "https://zfpqv.shop/api"
+  ],
+  "h5MirrorPool": [
+    "https://360go.shop",
+    "https://8vnet.shop",
+    "https://m3max.shop",
+    "https://mt9go.shop",
+    "https://x7mob.shop"
+  ],
+  "cdnMirrorPool": [
+    "cdn.4neon.shop",
+    "cdn.6sync.shop",
+    "cdn.brio9.shop",
+    "cdn.pixy2.shop",
+    "cdn.zeto7.shop",
+    "4neon.shop",
+    "6sync.shop",
+    "brio9.shop",
+    "pixy2.shop",
+    "zeto7.shop"
+  ],
+  "liveRelayPool": [
+    "live.zeto7.shop",
+    "live.pixy2.shop",
+    "live.brio9.shop",
+    "live.6sync.shop",
+    "live.4neon.shop",
+    "live-tokyo-1.4neon.shop",
+    "live-tokyo-1.6sync.shop",
+    "live-tokyo-1.brio9.shop",
+    "live-tokyo-1.pixy2.shop",
+    "live-tokyo-1.zeto7.shop"
+  ],
+  "apkUrl": null
+}
