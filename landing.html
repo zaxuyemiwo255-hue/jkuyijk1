@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>跳转中…</title>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { margin: 0; padding: 0; background: #0a0a0a; color: #f3f3f3;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+      min-height: 100vh; }
+    .wrap { max-width: 540px; margin: 0 auto; padding: 48px 24px; }
+    h1 { font-size: 22px; margin: 0 0 16px; }
+    p { line-height: 1.6; color: #b8b8b8; }
+    .mirror { display: block; padding: 12px 16px; margin: 8px 0; border-radius: 10px;
+      background: #161616; color: #f3f3f3; text-decoration: none; border: 1px solid #2a2a2a; }
+    .mirror.live { border-color: #d8a85b; }
+    .mirror .host { font-weight: 600; }
+    .mirror .status { float: right; font-size: 12px; color: #888; }
+    .mirror.live .status { color: #d8a85b; }
+    .notice { padding: 12px; background: #1a1a1a; border-left: 3px solid #d8a85b;
+      margin: 20px 0; font-size: 13px; }
+    .footer { font-size: 12px; color: #666; margin-top: 32px; }
+    a.tg { color: #d8a85b; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>正在为你寻找最快的入口…</h1>
+    <p>系统会自动检测下方域名的可用性，几秒后跳转到最快的镜像。</p>
+    <div class="notice">把这一页收藏，下次域名被封了也不用到处找。</div>
+    <div id="mirrors"></div>
+    <noscript>
+      <ul>
+        <li><a href="https://360go.shop" rel="noopener">https://360go.shop</a></li>
+        <li><a href="https://8vnet.shop" rel="noopener">https://8vnet.shop</a></li>
+        <li><a href="https://m3max.shop" rel="noopener">https://m3max.shop</a></li>
+        <li><a href="https://mt9go.shop" rel="noopener">https://mt9go.shop</a></li>
+        <li><a href="https://x7mob.shop" rel="noopener">https://x7mob.shop</a></li>
+      </ul>
+    </noscript>
+    
+  </div>
+
+  <script>
+    const MIRRORS = ["https://360go.shop","https://8vnet.shop","https://m3max.shop","https://mt9go.shop","https://x7mob.shop"];
+    const PROBE_PATH = '/health';
+    const PROBE_TIMEOUT_MS = 4000;
+    const AUTO_REDIRECT_AFTER_FIRST_LIVE = true;
+
+    function el(tag, attrs, children) {
+      const node = document.createElement(tag);
+      for (const k in (attrs || {})) {
+        if (k === 'class') node.className = attrs[k];
+        else if (k === 'href') node.href = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      }
+      for (const c of (children || [])) {
+        if (typeof c === 'string') node.appendChild(document.createTextNode(c));
+        else node.appendChild(c);
+      }
+      return node;
+    }
+
+    function render(rows) {
+      const root = document.getElementById('mirrors');
+      root.innerHTML = '';
+      rows.forEach(function(row) {
+        const card = el('a', { class: 'mirror' + (row.live ? ' live' : ''), href: row.url, rel: 'noopener' }, [
+          el('span', { class: 'host' }, [new URL(row.url).host]),
+          el('span', { class: 'status' }, [row.status]),
+        ]);
+        root.appendChild(card);
+      });
+    }
+
+    function probe(url) {
+      return new Promise(function(resolve) {
+        const controller = new AbortController();
+        const timer = setTimeout(function() { controller.abort(); }, PROBE_TIMEOUT_MS);
+        fetch(url + PROBE_PATH, { signal: controller.signal, mode: 'no-cors' })
+          .then(function() { clearTimeout(timer); resolve(true); })
+          .catch(function() { clearTimeout(timer); resolve(false); });
+      });
+    }
+
+    (async function() {
+      const rows = MIRRORS.map(function(url) { return { url: url, status: '检测中…', live: false }; });
+      render(rows);
+      let firstLiveSeen = false;
+      await Promise.all(MIRRORS.map(async function(url, i) {
+        const live = await probe(url);
+        rows[i].live = live;
+        rows[i].status = live ? '✓ 可用' : '✕ 不通';
+        render(rows);
+        if (live && !firstLiveSeen && AUTO_REDIRECT_AFTER_FIRST_LIVE) {
+          firstLiveSeen = true;
+          setTimeout(function() { window.location.href = url; }, 1200);
+        }
+      }));
+    })();
+  </script>
+</body>
+</html>
