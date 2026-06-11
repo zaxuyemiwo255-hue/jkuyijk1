@@ -1,11 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-11T22:21:07.431Z",
+  "updatedAt": "2026-06-11T22:26:16.349Z",
   "apiPool": [
     "https://mbtkd.shop/api",
     "https://vjyln.shop/api",
     "https://xkrwb.shop/api",
-    "https://zfpqv.shop/api"
+    "https://zfpqv.shop/api",
+    "https://gxwcf.shop/api"
   ],
   "apkUrl": null
 }
