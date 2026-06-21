@@ -1,11 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-21T17:23:48.850Z",
+  "updatedAt": "2026-06-21T17:29:02.613Z",
   "apiPool": [
     "https://xkrwb.shop/api",
     "https://gxwcf.shop/api",
     "https://mbtkd.shop/api",
-    "https://zfpqv.shop/api"
+    "https://zfpqv.shop/api",
+    "https://vjyln.shop/api"
   ],
   "apkUrl": "https://m3max.shop/apk/app-arm64-v8a-release.apk"
 }
