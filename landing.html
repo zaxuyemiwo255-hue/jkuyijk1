@@ -48,6 +48,24 @@
     const PROBE_PATH = '/health';
     const PROBE_TIMEOUT_MS = 4000;
     const AUTO_REDIRECT_AFTER_FIRST_LIVE = true;
+    // Invite / trial params carried in on the landing URL get forwarded to the
+    // mirror we redirect to, so a ?ref= / ?tc= / ?gc= share survives the hop and
+    // the app's onboarding flow still sees them (see app onboarding.ts).
+    const FORWARD_PARAMS = ['ref', 'tc', 'gc'];
+
+    function forwardParams(url) {
+      try {
+        const cur = new URLSearchParams(window.location.search);
+        const dest = new URL(url);
+        FORWARD_PARAMS.forEach(function(k) {
+          const v = cur.get(k);
+          if (v) dest.searchParams.set(k, v);
+        });
+        return dest.toString();
+      } catch (e) {
+        return url;
+      }
+    }
 
     function el(tag, attrs, children) {
       const node = document.createElement(tag);
@@ -67,7 +85,7 @@
       const root = document.getElementById('mirrors');
       root.innerHTML = '';
       rows.forEach(function(row) {
-        const card = el('a', { class: 'mirror' + (row.live ? ' live' : ''), href: row.url, rel: 'noopener' }, [
+        const card = el('a', { class: 'mirror' + (row.live ? ' live' : ''), href: forwardParams(row.url), rel: 'noopener' }, [
           el('span', { class: 'host' }, [new URL(row.url).host]),
           el('span', { class: 'status' }, [row.status]),
         ]);
@@ -96,7 +114,7 @@
         render(rows);
         if (live && !firstLiveSeen && AUTO_REDIRECT_AFTER_FIRST_LIVE) {
           firstLiveSeen = true;
-          setTimeout(function() { window.location.href = url; }, 1200);
+          setTimeout(function() { window.location.href = forwardParams(url); }, 1200);
         }
       }));
     })();
