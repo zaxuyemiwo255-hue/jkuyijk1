@@ -1,12 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-02T11:58:13.342Z",
-  "apiPool": [
-    "https://xkrwb.shop/api",
-    "https://gxwcf.shop/api",
-    "https://mbtkd.shop/api",
-    "https://zfpqv.shop/api",
-    "https://vjyln.shop/api"
-  ],
+  "updatedAt": "2026-07-02T12:10:22.417Z",
+  "apiPool": [],
   "apkUrl": "https://360go.shop/apk/app-arm64-v8a-release.apk"
 }
