@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-20T14:38:58.607Z",
+  "updatedAt": "2026-08-20T15:06:08.995Z",
   "apiPool": [
-    "https://gxwcf.shop/api",
-    "https://mbtkd.shop/api",
     "https://vjyln.shop/api",
     "https://xkrwb.shop/api",
-    "https://zfpqv.shop/api"
+    "https://zfpqv.shop/api",
+    "https://gxwcf.shop/api",
+    "https://mbtkd.shop/api"
   ],
   "apkUrl": "https://8vnet.shop/apk/app-arm64-v8a-release.apk"
 }
