@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-10T15:32:05.339Z",
+  "updatedAt": "2026-11-23T09:27:01.542Z",
   "apiPool": [
-    "https://gxwcf.shop/api",
-    "https://mbtkd.shop/api",
-    "https://vjyln.shop/api",
-    "https://xkrwb.shop/api",
-    "https://zfpqv.shop/api"
+    "https://jwu292llgy77oon7.360go.shop/api"
   ],
-  "apkUrl": "https://cdn.szgwjm.com/apk/app-arm64-v8a-202609080056.apk"
+  "h5MirrorPool": [],
+  "cdnMirrorPool": [],
+  "liveRelayPool": [],
+  "apkUrl": null
 }
