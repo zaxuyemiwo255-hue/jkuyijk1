@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T09:38:48.042Z",
+  "updatedAt": "2026-11-26T09:45:01.684Z",
   "apiPool": [
     "https://eue2zigtny64ub.6sync.shop:33551/api",
     "https://p2k56q3v8s7ftn.6sync.shop:33551/api",
     "https://e6c2xdtlj992.3f3e.shop/api",
-    "https://ca1.360go.shop/api",
-    "https://gxwcf.shop/api"
+    "https://ca1.360go.shop/api"
   ],
   "apkUrl": "https://cdn.szgwjm.com/apk/app-arm64-v8a-202610311110.apk"
 }
